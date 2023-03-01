@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdatePersonRequest extends FormRequest
 {
@@ -11,7 +12,7 @@ class UpdatePersonRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +22,14 @@ class UpdatePersonRequest extends FormRequest
      */
     public function rules(): array
     {
+        $peopleId = request()->segment(3);
+
         return [
-            //
+            'name' => 'required|string',
+            'cpf' => ['required', 'string', Rule::unique('people')->ignore($peopleId)],
+            'email' => ['required', 'email', Rule::unique('people')->ignore($peopleId)],
+            'date_of_birth' => 'required|date',
+            'nationality' => 'required|string'
         ];
     }
 }

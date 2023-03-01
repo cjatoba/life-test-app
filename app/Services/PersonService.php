@@ -24,4 +24,12 @@ class PersonService
     {
         return $this->repository->findOrFail($person->id);
     }
+
+    public function update(Person $person, array $data)
+    {
+        $personFind = $this->repository->findOrFail($person->id);
+        $personFind->update($data);
+        
+        return response()->json($data);
+    }
 }

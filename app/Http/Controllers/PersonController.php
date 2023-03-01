@@ -39,19 +39,13 @@ class PersonController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Person $person)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdatePersonRequest $request, Person $person)
     {
-        //
+        $personData = $request->validated();
+
+        return $this->personService->update($person, $personData);
     }
 
     /**
