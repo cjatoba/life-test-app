@@ -19,4 +19,9 @@ class PersonService
     {
         return $this->repository->create($data);
     }
+
+    public function show(Person $person)
+    {
+        return $this->repository->findOrFail($person->id);
+    }
 }
