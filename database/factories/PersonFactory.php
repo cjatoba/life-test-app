@@ -17,7 +17,11 @@ class PersonFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->name(),
+            'cpf' => fake()->cpf(),
+            'email' => fake()->email(),
+            'date_of_birth' => fake()->date('Y-m-d', now()->subYears(18)),
+            'nationality' => fake()->country(),
         ];
     }
 }

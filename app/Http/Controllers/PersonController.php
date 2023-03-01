@@ -5,15 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePersonRequest;
 use App\Http\Requests\UpdatePersonRequest;
 use App\Models\Person;
+use App\Services\PersonService;
 
 class PersonController extends Controller
 {
+    public function __construct(private PersonService $personService)
+    {
+    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return $this->personService->getAll();
     }
 
     /**
