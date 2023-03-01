@@ -14,3 +14,5 @@ docker-compose exec app
 composer install
 php artisan key:generate
 ```
+
+Acessar o projeto na porta 8989 `http://localhost:8989/`
