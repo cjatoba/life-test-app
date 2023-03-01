@@ -32,4 +32,12 @@ class PersonService
         
         return response()->json($data);
     }
+
+    public function destroy(Person $person)
+    {
+        $personFind = $this->repository->findOrFail($person->id);
+        $personFind->delete();
+        
+        return response([], 200);
+    }
 }
