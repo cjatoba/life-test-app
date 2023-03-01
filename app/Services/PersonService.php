@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Http\Resources\PersonResource;
 use App\Models\Person;
 
 class PersonService
@@ -12,17 +13,17 @@ class PersonService
 
     public function getAll()
     {
-        return $this->repository->all();
+        return PersonResource::collection($this->repository->all());
     }
 
     public function store(array $data)
     {
-        return $this->repository->create($data);
+        return new PersonResource($this->repository->create($data));
     }
 
     public function show(Person $person)
     {
-        return $this->repository->findOrFail($person->id);
+        return new PersonResource($this->repository->findOrFail($person->id));
     }
 
     public function update(Person $person, array $data)
@@ -30,7 +31,7 @@ class PersonService
         $personFind = $this->repository->findOrFail($person->id);
         $personFind->update($data);
         
-        return response()->json($data);
+        return response()->json(new PersonResource($person));
     }
 
     public function destroy(Person $person)
