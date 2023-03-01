@@ -15,4 +15,4 @@ composer install
 php artisan key:generate
 ```
 
-Acessar o projeto na porta 8989 `http://localhost:8989/`
+Acessar o projeto na porta 8989 `http://localhost:8989`
