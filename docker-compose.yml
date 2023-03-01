@@ -42,6 +42,21 @@ services:
       - "3388:3306"
     networks:
       - laravel
+  
+  mysql_test:
+    image: mysql:5.7.22
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+    volumes:
+      - ./.docker/mysql/dbdata_test:/var/lib/mysql
+    ports:
+      - "3398:3306"
+    networks:
+      - laravel
 
 networks:
   laravel:
