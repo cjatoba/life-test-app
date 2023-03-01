@@ -14,4 +14,9 @@ class PersonService
     {
         return $this->repository->all();
     }
+
+    public function store(array $data)
+    {
+        return $this->repository->create($data);
+    }
 }

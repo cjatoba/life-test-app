@@ -11,7 +11,7 @@ class StorePersonRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StorePersonRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string',
+            'cpf' => 'required|string|unique:people,cpf',
+            'email' => 'required|email|unique:people,email',
+            'date_of_birth' => 'required|date',
+            'nationality' => 'required|string'
         ];
     }
 }
