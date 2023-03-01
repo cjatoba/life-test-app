@@ -18,7 +18,9 @@ class PersonController extends Controller
      */
     public function index()
     {
-        return $this->personService->getAll();
+        $people = $this->personService->getAll();
+
+        return PersonResource::collection($people);
     }
 
     /**
@@ -28,7 +30,9 @@ class PersonController extends Controller
     {
         $personData = $request->validated();
 
-        return $this->personService->store($personData);
+        $person = $this->personService->store($personData);
+
+        return new PersonResource($person);
     }
 
     /**
@@ -36,7 +40,9 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        return $this->personService->show($person);
+        $person = $this->personService->show($person);
+
+        return new PersonResource($person);
     }
 
     /**

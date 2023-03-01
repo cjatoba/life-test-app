@@ -13,17 +13,17 @@ class PersonService
 
     public function getAll()
     {
-        return PersonResource::collection($this->repository->all());
+        return $this->repository->all();
     }
 
     public function store(array $data)
     {
-        return new PersonResource($this->repository->create($data));
+        return $this->repository->create($data);
     }
 
     public function show(Person $person)
     {
-        return new PersonResource($this->repository->findOrFail($person->id));
+        return $this->repository->findOrFail($person->id);
     }
 
     public function update(Person $person, array $data)
