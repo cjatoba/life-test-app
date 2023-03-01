@@ -42,6 +42,10 @@ class PersonService
     {
         $personFind = $this->getById($person->id);
 
+        foreach ($personFind->contacts as $contact) {
+            $contact->delete();
+        }
+
         return $personFind->delete();
     }
 }

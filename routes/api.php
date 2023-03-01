@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\PersonController;
+use App\Http\Controllers\{
+    PersonController,
+    ContactController
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::resource('/people', PersonController::class);
+Route::post('/contacts', [ContactController::class, 'store']);
