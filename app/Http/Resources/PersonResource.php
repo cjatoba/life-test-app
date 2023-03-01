@@ -19,7 +19,8 @@ class PersonResource extends JsonResource
             'cpf' => $this->cpf,
             'email' => $this->email,
             'date_of_birth' => $this->date_of_birth,
-            'nationality' => $this->nationality
+            'nationality' => $this->nationality,
+            'contacts' => ContactResource::collection($this->whenLoaded('contacts'))
         ];
     }
 }

@@ -40,7 +40,7 @@ class PersonController extends Controller
      */
     public function show(Person $person)
     {
-        $person = $this->personService->show($person);
+        $person = $this->personService->getById($person->id);
 
         return new PersonResource($person);
     }

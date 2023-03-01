@@ -13,7 +13,9 @@ class PersonService
 
     public function getAll()
     {
-        return $this->repository->all();
+        return $this->repository
+                    ->with('contacts')
+                    ->get();
     }
 
     public function store(array $data)
@@ -21,16 +23,12 @@ class PersonService
         return $this->repository->create($data);
     }
 
-    public function show(Person $person)
-    {
-        return $this->repository->findOrFail($person->id);
-    }
-
     public function getById(int $id)
     {
         return $this->repository
                     ->where('id', $id)
-                    ->findOrFail($id);
+                    ->with('contacts')
+                    ->firstOrFail();
     }
 
     public function update(Person $person, array $data)
