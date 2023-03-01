@@ -52,7 +52,11 @@ class PersonController extends Controller
     {
         $personData = $request->validated();
 
-        return $this->personService->update($person, $personData);
+        $this->personService->update($person, $personData);
+
+        return response()->json([
+            'message' => 'updated'
+        ]);
     }
 
     /**
@@ -60,6 +64,8 @@ class PersonController extends Controller
      */
     public function destroy(Person $person)
     {
-        return $this->personService->destroy($person);
+        $this->personService->destroy($person);
+
+        return response()->json([], 204);
     }
 }

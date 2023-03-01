@@ -26,19 +26,24 @@ class PersonService
         return $this->repository->findOrFail($person->id);
     }
 
+    public function getById(int $id)
+    {
+        return $this->repository
+                    ->where('id', $id)
+                    ->findOrFail($id);
+    }
+
     public function update(Person $person, array $data)
     {
-        $personFind = $this->repository->findOrFail($person->id);
-        $personFind->update($data);
+        $personFind = $this->getById($person->id);
         
-        return response()->json(new PersonResource($person));
+        return $personFind->update($data);
     }
 
     public function destroy(Person $person)
     {
-        $personFind = $this->repository->findOrFail($person->id);
-        $personFind->delete();
-        
-        return response([], 200);
+        $personFind = $this->getById($person->id);
+
+        return $personFind->delete();
     }
 }
