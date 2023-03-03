@@ -20,6 +20,7 @@ docker run --rm \
 ```shell
 ./vendor/bin/sail up -d
 ./vendor/bin/sail artisan key:generate
+./vendor/bin/sail artisan migrate
 ```
 
-Acessar o projeto em `http://localhost`
+Acessar o projeto na porta 8989: `http://localhost:8989`
