@@ -4,15 +4,22 @@
 cp .env.example .env
 ```
 
-Alterar a chave LOCAL_USER no arquivo .env para o nome do usuário local
-Adicionar uma senha na chave DB_PASSWORD no arquivo .env
+- Adicionar uma senha na chave DB_PASSWORD no arquivo .env
 
+- Executar o comando composer install utilizando o docker
 
 ```shell
-docker-compose up -d
-docker-compose exec app
-composer install
-php artisan key:generate
+docker run --rm \
+    -u "$(id -u):$(id -g)" \
+    -v "$(pwd):/var/www/html" \
+    -w /var/www/html \
+    laravelsail/php82-composer:latest \
+    composer install --ignore-platform-reqs
 ```
 
-Acessar o projeto na porta 8989 `http://localhost:8989`
+```shell
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan key:generate
+```
+
+Acessar o projeto em `http://localhost`
